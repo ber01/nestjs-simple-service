@@ -1,8 +1,7 @@
 import { Logger } from '@nestjs/common'
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
-import { httpExceptionFilter } from './common/filters'
-import { validationPipe } from './common/pipes'
+import { httpExceptionFilter, validationPipe } from './common'
 
 const logger = new Logger(bootstrap.name)
 
