@@ -7,6 +7,10 @@ export class UserRepository extends Repository<User> {
     return this.findOne({ email })
   }
 
+  public findByName(name: string): Promise<User> {
+    return this.findOne({ name })
+  }
+
   public findByIdWithoutPassword(id: string): Promise<User> {
     const queryBuilder = this.createQueryBuilder('user')
       .select([
