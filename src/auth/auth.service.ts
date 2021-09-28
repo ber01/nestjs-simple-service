@@ -5,8 +5,8 @@ import { plainToClass } from 'class-transformer'
 import * as EmailValidator from 'email-validator'
 import { User } from 'src/users/users.entity'
 import { UserRepository } from 'src/users/users.repository'
-import { LoginRequestDto } from './dtos'
-import { LoginResponseDto } from './dtos/login.response.dto'
+import { LoginRequestDto, LoginResponseDto } from './dtos'
+
 @Injectable()
 export class AuthService {
   constructor(
