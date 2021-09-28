@@ -19,7 +19,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
     response.status(status).json({
       statusCode: status,
       message: typeof res === 'string' ? res : res.message,
-      data: null,
+      data: undefined,
     })
   }
 }
