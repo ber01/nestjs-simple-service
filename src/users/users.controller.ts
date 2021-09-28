@@ -4,10 +4,12 @@ import {
   Get,
   Param,
   Post,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common'
 import { AuthService } from 'src/auth/auth.service'
 import { LoginRequestDto } from 'src/auth/dtos'
+import { JwtAuthGuard } from 'src/auth/guards'
 import { SuccessInterceptor } from 'src/common/interceptors'
 import { SignUpRequestDto } from './dtos'
 import { UsersService } from './users.service'
@@ -26,11 +28,13 @@ export class UsersController {
   }
 
   @Get('/all')
+  @UseGuards(JwtAuthGuard)
   public getAllUser() {
     return this.userService.getAllUser()
   }
 
   @Get('/:id')
+  @UseGuards(JwtAuthGuard)
   public getUserById(@Param('id') id: string) {
     return this.userService.getUserById(id)
   }
