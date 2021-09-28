@@ -53,4 +53,13 @@ export class UsersService {
 
     return user
   }
+
+  public async getAllUser() {
+    const users = await this.userRepostiory.findAllWithoutPassword()
+    if (!users.length) {
+      throw new NotFoundException('users is not exists')
+    }
+
+    return users
+  }
 }

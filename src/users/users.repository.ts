@@ -21,4 +21,17 @@ export class UserRepository extends Repository<User> {
 
     return queryBuilder.getOne()
   }
+
+  public findAllWithoutPassword(): Promise<User[]> {
+    const queryBuilder = this.createQueryBuilder('user').select([
+      'user.id',
+      'user.email',
+      'user.name',
+      'user.imageUrl',
+      'user.createdAt',
+      'user.updatedAt',
+    ])
+
+    return queryBuilder.getMany()
+  }
 }
