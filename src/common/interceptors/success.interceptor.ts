@@ -15,7 +15,7 @@ export class SuccessInterceptor implements NestInterceptor {
     return next.handle().pipe(
       map((data) => ({
         statusCode,
-        message: null,
+        message: undefined,
         data,
       })),
     )
