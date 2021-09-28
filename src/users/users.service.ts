@@ -2,6 +2,7 @@ import {
   ConflictException,
   Injectable,
   InternalServerErrorException,
+  NotFoundException,
 } from '@nestjs/common'
 import * as bcrypt from 'bcrypt'
 import { plainToClass } from 'class-transformer'
@@ -42,5 +43,14 @@ export class UsersService {
     const hashPassword = await bcrypt.hash(password, saltOrRounds)
     dto.setPassword(hashPassword)
     return await manager?.save(dto.toEntity())
+  }
+
+  public async getUserById(id: string) {
+    const user = await this.userRepostiory.findByIdWithoutPassword(id)
+    if (!user) {
+      throw new NotFoundException('user is not exist')
+    }
+
+    return user
   }
 }
