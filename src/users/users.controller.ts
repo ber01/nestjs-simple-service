@@ -10,7 +10,7 @@ import {
 import { AuthService } from 'src/auth/auth.service'
 import { LoginRequestDto } from 'src/auth/dtos'
 import { JwtAuthGuard } from 'src/auth/guards'
-import { SuccessInterceptor } from 'src/common/interceptors'
+import { SuccessInterceptor } from 'src/common'
 import { SignUpRequestDto } from './dtos'
 import { UsersService } from './users.service'
 
