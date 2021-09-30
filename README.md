@@ -8,10 +8,14 @@
 - node
 - docker
 
-## Install
+## Installation
 
 ```
 docker-compose up
+```
+
+```
+copy .env env
 ```
 
 ```
@@ -21,10 +25,6 @@ yarn
 ```
 yarn start
 ```
-
-## TODO
-
-- PostgreSQL 관련 Dockerfile 업데이트
 
 ## Reference
 
