@@ -4,6 +4,7 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm'
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
 import { UsersModule } from './users/users.module'
 import { AuthModule } from './auth/auth.module'
+import * as Joi from 'joi'
 
 const typeOrmModuleOptions = {
   useFactory: async (
@@ -25,7 +26,17 @@ const typeOrmModuleOptions = {
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      validationSchema: Joi.object({
+        DATABASE_HOST: Joi.string().default('localhost'),
+        DATABASE_PASSWORD: Joi.string().default('pg'),
+        DATABASE_PORT: Joi.number().default(5432),
+        DATABASE_USER: Joi.string().default('pg'),
+        DATABASE_DATABASE: Joi.string().default('pg'),
+        JWT_SECRET: Joi.string().required(),
+      }),
+    }),
     TypeOrmModule.forRootAsync(typeOrmModuleOptions),
     UsersModule,
     AuthModule,
