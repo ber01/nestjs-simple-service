@@ -9,7 +9,7 @@ import { JwtStrategy } from './strategies'
 const jwtModuleAsyncOptions: JwtModuleAsyncOptions = {
   useFactory: async (configService: ConfigService) => ({
     secret: configService.get('JWT_SECRET'),
-    signOptions: { expiresIn: '10m' },
+    signOptions: { expiresIn: '7d' },
   }),
   inject: [ConfigService],
 }
