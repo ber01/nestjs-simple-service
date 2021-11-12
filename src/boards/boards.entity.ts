@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator'
+import { IsArray, IsNotEmpty, IsString } from 'class-validator'
 import { BaseEntity } from 'src/common/entities'
 import { User } from 'src/users/users.entity'
 import { Column, Entity, ManyToOne } from 'typeorm'
@@ -15,7 +15,8 @@ export class Board extends BaseEntity {
   @Column({ type: 'varchar' })
   public content!: string
 
-  @Column({ type: 'varchar', default: [] })
+  @IsArray()
+  @Column({ type: 'varchar', array: true, default: [] })
   public tag!: string[]
 
   @ManyToOne(() => User, (user) => user.boards)
