@@ -5,6 +5,7 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
 import { UsersModule } from './users/users.module'
 import { AuthModule } from './auth/auth.module'
 import * as Joi from 'joi'
+import { BoardsModule } from './boards/boards.module'
 
 const typeOrmModuleOptions = {
   useFactory: async (
@@ -40,6 +41,7 @@ const typeOrmModuleOptions = {
     TypeOrmModule.forRootAsync(typeOrmModuleOptions),
     UsersModule,
     AuthModule,
+    BoardsModule,
   ],
 })
 export class AppModule {}
