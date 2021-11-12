@@ -12,6 +12,11 @@ export class UserRepository extends Repository<User> {
   }
 
   public findByIdWithoutPassword(id: string): Promise<User> {
+    return this.findOne({
+      select: ['id', 'email', 'name', 'imageUrl'],
+      relations: ['boards'],
+    })
+
     const queryBuilder = this.createQueryBuilder('user')
       .select([
         'user.id',
