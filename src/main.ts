@@ -1,14 +1,21 @@
-import { Logger } from '@nestjs/common'
+import { Logger, ValidationPipe } from '@nestjs/common'
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
-import { httpExceptionFilter, validationPipe } from './common'
+import { HttpExceptionFilter } from './common'
 
 const logger = new Logger(bootstrap.name)
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
-  app.useGlobalPipes(validationPipe)
-  app.useGlobalFilters(httpExceptionFilter)
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transformOptions: { enableImplicitConversion: true },
+    }),
+  )
+  app.useGlobalFilters(new HttpExceptionFilter())
 
   await app.listen(3000)
   logger.log('Hello World!')

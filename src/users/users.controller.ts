@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Param,
+  ParseUUIDPipe,
   Post,
   UseGuards,
   UseInterceptors,
@@ -29,13 +30,15 @@ export class UsersController {
 
   @Get('/all')
   @UseGuards(JwtAuthGuard)
-  public getAllUser() {
-    return this.userService.getAllUser()
+  public getUsers() {
+    return this.userService.getUsers()
   }
 
   @Get('/:id')
   @UseGuards(JwtAuthGuard)
-  public getUserById(@Param('id') id: string) {
+  public getUserById(
+    @Param('id', new ParseUUIDPipe({ version: '4' })) id: string,
+  ) {
     return this.userService.getUserById(id)
   }
 

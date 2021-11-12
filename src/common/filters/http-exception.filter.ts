@@ -23,5 +23,3 @@ export class HttpExceptionFilter implements ExceptionFilter {
     })
   }
 }
-
-export const httpExceptionFilter = new HttpExceptionFilter()
