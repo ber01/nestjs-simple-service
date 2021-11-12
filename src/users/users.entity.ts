@@ -1,6 +1,7 @@
 import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator'
+import { Board } from 'src/boards/boards.entity'
 import { BaseEntity } from 'src/common/entities'
-import { Column, Entity } from 'typeorm'
+import { Column, Entity, OneToMany } from 'typeorm'
 
 @Entity()
 export class User extends BaseEntity {
@@ -22,4 +23,7 @@ export class User extends BaseEntity {
   @IsOptional()
   @Column({ type: 'varchar', nullable: true })
   public imageUrl?: string
+
+  @OneToMany(() => Board, (board) => board.user, { cascade: true })
+  public boards!: Board[]
 }
